@@ -11,11 +11,13 @@
         </h3>
 	{{ end }}
         <div class="post-content-preview">
-	{{ with .Description }}
+        <p>
+	    {{ with .Description }}
             {{ . }}
         {{ else }}
             {{ .Summary}}
        {{ end }}
+        </p>
         </div>
     </a>
     <p class="post-meta">
@@ -28,7 +30,7 @@
             {{ end }}
         {{ end }}
     {{ else }}
-        Posted by {{ with .Params.author }}{{ . }}{{ else }}{{ .Site.Title }}{{ end }} on {{ .Date.Format "Monday, January 2, 2006" }}
+        {{ i18n (lower (printf "date.month.%s" .Date.Month)) }} {{ .Date.Day }}, {{ .Date.Year }}
         <!-- Don't show "Last Modified on" if update happened on the same day. -->
         {{ if (and (not .Lastmod.IsZero) (not (eq (dateFormat "2006-01-02" .Lastmod) (dateFormat "2006-01-02" .Date)))) }}
             <br>Last Modified on {{ dateFormat "Monday, January 2, 2006" .Params.LastMod }} 

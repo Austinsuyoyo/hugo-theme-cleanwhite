@@ -1,0 +1,36 @@
+## DATE ##
+- id: "date.month.january"
+  translation: "一月"
+
+- id: "date.month.february"
+  translation: "二月"
+
+- id: "date.month.march"
+  translation: "三月"
+
+- id: "date.month.april"
+  translation: "四月"
+
+- id: "date.month.may"
+  translation: "五月"
+
+- id: "date.month.june"
+  translation: "六月"
+
+- id: "date.month.july"
+  translation: "七月"
+
+- id: "date.month.august"
+  translation: "八月"
+
+- id: "date.month.september"
+  translation: "九月"
+
+- id: "date.month.october"
+  translation: "十月"
+
+- id: "date.month.november"
+  translation: "十一月"
+
+- id: "date.month.december"
+  translation: "十二月"

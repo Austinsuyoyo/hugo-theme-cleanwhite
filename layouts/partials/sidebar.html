@@ -1,4 +1,12 @@
 
+{{ if .Site.Params.gravataremail }}
+{{ .Scratch.Set "gravatarEmail" .Site.Params.gravataremail }}
+{{ end }}
+{{ if .Scratch.Get "gravatarEmail" }}
+{{ .Scratch.Set "authorPicture" (printf "//www.gravatar.com/avatar/%s" (urlize (md5 (.Scratch.Get "gravatarEmail")))) }}
+{{ else if .Site.Params.sidebar_avatar }}
+{{ .Scratch.Set "authorPicture" (absURL .Site.Params.sidebar_avatar) }}
+{{ end }}
 <!-- Sidebar Container -->
 <div class="
     col-lg-3 col-lg-offset-0
@@ -12,9 +20,9 @@
     <section class="visible-md visible-lg">
 	<!--<hr><h5><a href="{{ "/top/about" | relLangURL }}">ABOUT ME</a></h5>-->
         <div class="short-about">
-            {{ with .Site.Params.sidebar_avatar }}
-            <a href="{{ "/top/about" | relLangURL }}">
-               <img src="{{ . | relURL }}" alt="avatar" style="cursor: pointer" />
+            {{ with ($.Scratch.Get "authorPicture") }}
+            <a href="{{ "/about" | relLangURL }}">
+               <img src="{{ . }}{{ if in . "//www.gravatar.com/avatar/" }}?s=512{{ end }}" alt="avatar" style="cursor: pointer" />
             </a>
             {{ end }}
             {{ with .Site.Params.sidebar_about_description }}
