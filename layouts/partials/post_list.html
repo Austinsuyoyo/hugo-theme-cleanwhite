@@ -2,42 +2,32 @@
 {{ range $index, $element := $.Paginator.Pages }}
 <div class="post-preview">
     <a href="{{ .Permalink }}">
-        <h2 class="post-title">
+        <h1 class="post-title">
             {{ .Title }}
-        </h2>
-	{{with .Params.subtitle }}
+        </h1>
+        {{with .Params.subtitle }}
         <h3 class="post-subtitle">
             {{ . }}
         </h3>
-	{{ end }}
-        <div class="post-content-preview">
-        <p>
-	    {{ with .Description }}
-            {{ . }}
-        {{ else }}
-            {{ .Summary}}
-       {{ end }}
-        </p>
-        </div>
+        {{ end }}
     </a>
     <p class="post-meta">
-    {{ if .Params.metadata }}
-        {{ range $index, $element := .Params.metadata }}
-            {{ if .link }}
-                <a href="{{ .link }}">{{ .text }}</a>
-            {{ else }}
-                {{ .text }}
-            {{ end }}
-        {{ end }}
-    {{ else }}
-        {{ i18n (lower (printf "date.month.%s" .Date.Month)) }} {{ .Date.Day }}, {{ .Date.Year }}
-        <!-- Don't show "Last Modified on" if update happened on the same day. -->
-        {{ if (and (not .Lastmod.IsZero) (not (eq (dateFormat "2006-01-02" .Lastmod) (dateFormat "2006-01-02" .Date)))) }}
-            <br>Last Modified on {{ dateFormat "Monday, January 2, 2006" .Params.LastMod }} 
-        {{ end }}
+    {{ i18n (lower (printf "date.month.%s" .Date.Month)) }} {{ .Date.Day }}, {{ .Date.Year }}
+    <!-- Don't show "Last Modified on" if update happened on the same day. -->
+    {{ if (and (not .Lastmod.IsZero) (not (eq (dateFormat "2006-01-02" .Lastmod) (dateFormat "2006-01-02" .Date)))) }}
+        <br>Last Modified on {{ dateFormat "Monday, January 2, 2006" .Params.LastMod }} 
     {{ end }}
     </p>
-
+    <div class="post-content-preview">
+    <p>
+    {{ with .Description }}
+        {{ . }}
+    {{ else }}
+        {{ .Summary}}
+    {{ end }}
+    </p>
+    <a href="{{ .Permalink }}" aria-label="{{ if i18n "post.open_post" }}{{ i18n "post.open_post" }}: {{ .Title }}{{ end }}">{{ i18n "post.continue_read" }}</a>
+    </div>
 </div>
 <hr>
 {{ end }}

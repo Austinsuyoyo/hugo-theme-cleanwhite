@@ -1,43 +1,43 @@
 ## DATE ##
 - id: "date.month.january"
-  translation: "一月"
+  translation: "January"
 
 - id: "date.month.february"
-  translation: "二月"
+  translation: "February"
 
 - id: "date.month.march"
-  translation: "三月"
+  translation: "March"
 
 - id: "date.month.april"
-  translation: "四月"
+  translation: "April"
 
 - id: "date.month.may"
-  translation: "五月"
+  translation: "May"
 
 - id: "date.month.june"
-  translation: "六月"
+  translation: "June"
 
 - id: "date.month.july"
-  translation: "七月"
+  translation: "July"
 
 - id: "date.month.august"
-  translation: "八月"
+  translation: "August"
 
 - id: "date.month.september"
-  translation: "九月"
+  translation: "September"
 
 - id: "date.month.october"
-  translation: "十月"
+  translation: "October"
 
 - id: "date.month.november"
-  translation: "十一月"
+  translation: "November"
 
 - id: "date.month.december"
-  translation: "十二月"
+  translation: "December"
 
 ## POST ##
 - id: "post.open_post"
-  translation: "打開文章"
+  translation: "open post"
 
 - id: "post.continue_read"
-  translation: "繼續閱讀"
+  translation: "Continue Reading"
