@@ -1,40 +1,52 @@
 {{ define "main" }}
+{{- $taxonomies := .Data.Plural -}}
 <!-- Post Content -->
 <article>
     <div class="container">
         <div class="row">
-            <!-- Post Container -->
-            <div class="
-                col-lg-8 col-lg-offset-2
-                col-md-10 col-md-offset-1
-                post-container">
-
-         	{{ .Content }}
-                {{ partial "comments.html" . }}
-
-            </div>
             <!-- Sidebar Container -->
             <div class="
                 col-lg-8 col-lg-offset-2
                 col-md-10 col-md-offset-1
                 sidebar-container">
-
-                <!-- Featured Tags -->
-                {{ if .Site.Params.featured_tags }}
-                <section>
-                    <hr class="hidden-sm hidden-xs">
-                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
-                    <div class="tags">
-                        {{ $featured_condition_size := .Site.Params.featured_condition_size }}
-                        {{ range $name, $taxonomy := .Site.Taxonomies.tags }}
-                        {{ if gt (len $taxonomy.Pages) $featured_condition_size }}
-                        <a href="{{ "/tags/" | relLangURL }}{{ $name | urlize }}" title="{{ $name }}">
-                        {{ $name }}
-                        </a>
+                <h2 class="title is-4 has-text-weight-normal"> {{ $taxonomies | upper }} </h2>
+                <!-- Tags -->
+                {{ if eq $taxonomies "tags" }}
+                    <section>
+                        <div class="tags">
+                            {{ range $.Site.Taxonomies.tags.ByCount }}
+                                {{ $count := .Count }}
+                                <a href="{{ path.Join $taxonomies .Term | urlize | absLangURL }}" title="{{ .Term }}">
+                                    {{ .Term }}
+                                <sup>{{ $count }}</sup>
+                                </a>
+                            {{ end }}
+                        </div>
+                    </section>
+                {{ end }}
+                <!-- Categories -->
+                {{ if eq $taxonomies "categories" }}
+                    <div class="categories">
+                    {{ range .Data.Terms.ByCount }}
+                        <h3><i class="far fa-folder-open" aria-hidden="true"></i>
+                            <a href="{{ path.Join $taxonomies .Term | urlize | absLangURL }}" target="_blank">{{ .Term }}</a>
+                            ({{ .Count }})
+                        </h3>
+                        <ul class="listing">
+                            {{ range first 5 .Pages }}
+                            <li>
+                                <span class="date">{{ .Date.Format "2006/01/02" }}</span>
+                                <a href="{{ .Permalink }}" title="{{ .Title }}" target="_blank">{{ .Title }}</a>
+                            </li>
+                            {{ end }}
+                        </ul>
+                        {{ if gt (len .Pages) 2 }}
+                        <span class="more-post">
+                            <a href="{{ path.Join $taxonomies .Term | urlize | absLangURL }}" > 觀看更多 >></a>
+                        </span>
                         {{ end }}
-                        {{ end }}
+                    {{ end }}
                     </div>
-                </section>
                 {{ end }}
 
                 <!-- Friends Blog -->
@@ -51,6 +63,7 @@
                 {{ end }}
             </div>
         </div>
+        <hr/>
     </div>
 </article>
 

@@ -22,7 +22,6 @@
    }
 }
 .sidebar-container {
-    color: #bfbfbf;
     font-size: 15px 
 }
 .sidebar-container h5 {
@@ -682,15 +681,16 @@ body {
 }
 .tags a, .tags .tag {
     display: inline-block;
-    border: 1px solid rgba(255, 255, 255, .8);
-    border-radius: 999em;
-    padding: 0 10px;
+    border: 0 solid #E2E8F0;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 10%), 0 2px 4px -1px rgb(0 0 0 / 6%);
+    border-radius: .6em;
+    padding: .6em 1em;
     color: #fff;
     line-height: 24px;
-    font-size: 14px;
+    font-size: 1.5rem;
     text-decoration: none;
     margin: 0 1px;
-    margin-bottom: 6px 
+    margin-bottom: 10px;
 }
 .tags a:hover, .tags .tag:hover, .tags a:active, .tags .tag:active {
     color: #fff;
@@ -982,4 +982,8 @@ body {
     .side-catalog {
         display: none;
    }
+}
+
+.categories a{
+    color: #404040 !important;
 }
